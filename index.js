@@ -35,14 +35,23 @@
 // const newSuperHero = require("./superHero");
 // console.log(newSuperHero.getName());
 
-const SuperHero = require("./superHero.js");
+// const SuperHero = require("./superHero.js");
 
-const batman = new SuperHero("Batman");
-console.log(batman.getName());
-batman.setName("Bruce wayne");
-console.log(batman.getName());
+// const batman = new SuperHero("Batman");
+// console.log(batman.getName());
+// batman.setName("Bruce wayne");
+// console.log(batman.getName());
 
-const superman = new SuperHero("Superman");
-console.log(superman.getName());
-superman.setName("Clark kent");
-console.log(superman.getName());
+// const superman = new SuperHero("Superman");
+// console.log(superman.getName());
+// superman.setName("Clark kent");
+// console.log(superman.getName());
+
+
+// Lesson 3
+const math = require("./math.js");
+
+// Destructuring math according to ES6 practice 
+const { add, subtract} = math;
+
+console.log(add(8, 2), subtract(8, 2));
