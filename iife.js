@@ -4,12 +4,13 @@
 // IIFE helps keep top-level variables scoped to the module rathan than the
 // global object
 
-(function(){
+// Passing "message" parameter to the function with argument "Hello" or "Hi"
+(function(message){
     const superHero = "Batman";
-    console.log(superHero);
-})();
+    console.log(message, superHero);
+})("Hello");
 
-(function(){
+(function(message){
     const superHero = "Superman";
-    console.log(superHero);
-})();
+    console.log(message, superHero);
+})("Hi");
