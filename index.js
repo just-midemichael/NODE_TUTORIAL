@@ -65,7 +65,7 @@
 
 // Lesson 5
 // Path Built-modules
-const path = require("node:path")
+// const path = require("node:path")
 
 // console.log(__filename);
 // console.log(__dirname);
@@ -88,3 +88,14 @@ const path = require("node:path")
 
 // resolving path
 // console.log(path.resolve("nodejs", "./lesson_1", "../path_module"));
+
+
+// Lesson 6
+const greet = (name) => {
+    console.log("Hello, are we good?", name);
+};
+
+const greetAuthor = (authorsName) => {
+    authorsName("Olu");
+};
+greetAuthor(greet);
