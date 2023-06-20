@@ -56,5 +56,35 @@
 
 // console.log(add(8, 2), subtract(8, 2));
 
-const jsondata = require("./data.json");
-console.log(jsondata.address.city);
+
+// Lesson 4
+// getting data from json.data
+//const jsondata = require("./data.json");
+//console.log(jsondata.address.city);
+
+
+// Lesson 5
+// Path Built-modules
+const path = require("node:path")
+
+// console.log(__filename);
+// console.log(__dirname);
+
+// console.log(path.basename(__filename));
+// console.log(path.basename(__dirname));
+
+// console.log(path.extname(__filename));
+// console.log(path.extname(__dirname));
+
+// console.log(path.parse(__filename));
+// console.log(path.format(path.parse(__filename)));
+
+// console.log(path.isAbsolute(__filename));
+// console.log(path.isAbsolute("./data.json"));
+
+// joining paths
+// console.log(path.join("NODE_TUTORIAL", "lesson_1", "19.path_module"))
+// console.log(path.isAbsolute(path.join(__dirname), "data.json"));
+
+// resolving path
+// console.log(path.resolve("nodejs", "./lesson_1", "../path_module"));
