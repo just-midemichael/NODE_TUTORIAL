@@ -49,10 +49,12 @@
 
 
 // Lesson 3
-const math = require("./math.js");
+// const math = require("./math.js");
 
 // Destructuring math according to ES6 practice 
-const { add, subtract} = math;
+// const { add, subtract} = math;
 
-console.log(add(8, 2), subtract(8, 2));
- 
+// console.log(add(8, 2), subtract(8, 2));
+
+const jsondata = require("./data.json");
+console.log(jsondata.address.city);
