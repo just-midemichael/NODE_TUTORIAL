@@ -91,11 +91,36 @@
 
 
 // Lesson 6
-const greet = (name) => {
-    console.log("Hello, are we good?", name);
-};
+// const greet = (name) => {
+//     console.log("Hello, are we good?", name);
+// };
 
-const greetAuthor = (authorsName) => {
-    authorsName("Olu");
-};
-greetAuthor(greet);
+// greetAuthor is a higher order function (HOF), 
+// authorsName is a callback function
+// const greetAuthor = (authorsName) => {
+//     authorsName("Olu");
+// };
+// greetAuthor(greet);
+
+// lesson 7
+// Custom event
+
+const EventEmitter = require("node:events");
+
+const emitter = new EventEmitter();
+
+// Event listener 
+emitter.on("order-pizza", (size, topping, paste) => {
+    console.log(`order recieved! Baking ${size} sweet pizza with ${topping} & ${paste}`);
+});
+
+// Addition Event listener
+emitter.on("order-pizza", (size) => {
+    if(size === "large") {
+        console.log("Serving pizza with complimentary drinks");
+    }
+    else {
+        console.log("Serving just the pizza without complimentary drinks")
+    };
+});
+emitter.emit("order-pizza", "large", "mushroom", "ketchup");
