@@ -105,22 +105,91 @@
 // lesson 7
 // Custom event
 
-const EventEmitter = require("node:events");
+// const EventEmitter = require("node:events");
 
-const emitter = new EventEmitter();
+// const emitter = new EventEmitter();
 
 // Event listener 
-emitter.on("order-pizza", (size, topping, paste) => {
-    console.log(`order recieved! Baking ${size} sweet pizza with ${topping} & ${paste}`);
-});
+// emitter.on("order-pizza", (size, topping, paste) => {
+//     console.log(`order recieved! Baking ${size} sweet pizza with ${topping} & ${paste}`);
+// });
 
 // Addition Event listener
-emitter.on("order-pizza", (size) => {
-    if(size === "large") {
-        console.log("Serving pizza with complimentary drinks");
+// emitter.on("order-pizza", (size) => {
+    // Conditional Loop that log statement based on requirement
+    // From the Event Emittter
+//     if(size === "large") {
+//         console.log("Serving pizza with complimentary drinks");
+//     }
+//     else {
+//         console.log("Serving just the pizza without complimentary drinks")
+//     };
+// });
+
+// Event Emitter
+// emitter.emit("order-pizza", "large", "mushroom", "ketchup");
+
+
+// Lesson 8
+const PizzaShop = require("./pizza-shop.js");
+const DrinkMachine = require("./drink-machine.js");
+const SouvenirPackage = require("./souvenir-package.js");
+
+// Making an object of pizzaShop by creating a new instance;
+const pizzaShop = new PizzaShop();
+const drinkMachine =  new DrinkMachine();
+const souvenirPackage = new SouvenirPackage();
+
+
+// Adding Event listener to our Event Emitter in pizza-shop.js 
+pizzaShop.on("order", (size, topping) => {
+    if(size === undefined || topping === undefined) {
+        console.log("Yet to recieve any order")
     }
     else {
-        console.log("Serving just the pizza without complimentary drinks")
-    };
+        console.log(`Order recieved! Baking a ${size} pizza with ${topping}`);
+    }
+    drinkMachine.serveDrink(size);
+    souvenirPackage.giveSouvenir(topping);
 });
-emitter.emit("order-pizza", "large", "mushroom", "ketchup");
+
+
+
+// Scenerio 1: no order
+
+// less than 1 order was gotten
+pizzaShop.getOrder();
+
+// if order number is 0; order number will display message(No order has been made!)
+// if order number is less than 0; order number will display message(An order of: -orderNumber has been cancled) 
+pizzaShop.displayOrderNumber();
+
+// This display message(Yet to recieve any order) 
+// because less than 1 order has been made as seen in pizzashop.getOrder();
+// So size & topping which hase a value of = "large" & "ketchup" respectively
+// Will now be undefine
+pizzaShop.getOrder("large", "ketchup");
+
+
+// Scenerio 2
+
+// An order of aleast 1 (20 orders) has now been made here with
+// setorderNumber()
+pizzaShop.setOrderNumber(3);
+
+// This check the order number;
+// if order is now atleast 1; current order will be increased by 1
+pizzaShop.getOrder();
+
+// if the order is now atleast 1;
+// message(Current order number: pizzaShop.setOrderNumber( + 1));
+pizzaShop.displayOrderNumber();
+
+// This displays; 
+// message(Order recieved! Baking ${size} pizza with ${topping}) 
+// because atleast 1 order has been made 
+// as seen in pizzashop.setOrderNumber();
+// So size & topping which has a value of = "large" & "ketchup" respectively
+// Will now be defined
+
+pizzaShop.getOrder("large", "ketchup");
