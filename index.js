@@ -293,17 +293,25 @@
 // writeFile();
 
 // Stream fs module method
-// const fs = require("node:fs");
+const fs = require("node:fs");
+const zlib = require("node:zlib");
 
-// const readableStream = fs.createReadStream("./file1.txt", {
-//     encoding: "utf-8",
-//     highWaterMark: 5,
-// });
+const gzib = zlib.createGzip();
 
-// const writeableStream = fs.createWriteStream("./file2.txt");
+const readableStream = fs.createReadStream("./file1.txt", {
+    encoding: "utf-8",
+    highWaterMark: 5,
+});
 
-// // Adding Event Emitter
+readableStream.pipe(gzib).pipe(fs.WriteStream("./file2.txt.gz"))
+
+const writeableStream = fs.createWriteStream("./file2.txt");
+
+// Adding Event listener
 // readableStream.on("data", (chunk) => {
 //     console.log(chunk.trim());
 //     writeableStream.write(chunk);
 // });
+
+// using pipes
+readableStream.pipe(writeableStream);
