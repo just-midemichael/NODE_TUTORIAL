@@ -213,39 +213,81 @@
 // Lesson 10
 // FS module
 // Fs module use internal buffer
-const fs = require("node:fs");
+// const fs = require("node:fs");
 
-console.log("First");
+// console.log("First");
 
 // Added second argument UTF-8
-const fileContents = fs.readFileSync("./file.txt", "utf-8");
-console.log(fileContents);
+// const fileContents = fs.readFileSync("./file.txt", "utf-8");
+// console.log(fileContents);
 
 
-console.log("Second");
+// console.log("Second");
 
 // Reading file asynchronously
-fs.readFile("./file.txt", "utf-8", (error, data) => {
-if(error) {
-    console.log(error);
-}
-else {
-    console.log(data);    
-};
-});
+// fs.readFile("./file.txt", "utf-8", (error, data) => {
+// if(error) {
+//     console.log(error);
+// }
+// else {
+//     console.log(data);    
+// };
+// });
 
-console.log("Third");
+// console.log("Third");
 
 
-fs.writeFileSync("./greet.txt", "Hello-World!");
+// fs.writeFileSync("./greet.txt", "Hello-World!");
 
 
 // This overrides the synchronous fs.writeFileSync
-fs.writeFile("./greet.txt", " Hello Africa!", {flag: "a"}, (error) => {
-    if(error) {
-        console.log(error);
+// fs.writeFile("./greet.txt", " Hello Africa!", {flag: "a"}, (error) => {
+//     if(error) {
+//         console.log(error);
+//     }
+//     else {
+//         console.log("File written");
+//     };
+// }); 
+
+
+const { error } = require("node:console");
+const fs = require("node:fs/promises");
+
+// console.log("First");
+
+// fs.readFile("file.txt", "utf-8")
+//     .then (data => console.log(data))
+//     .catch (error => console.log(error));
+
+// console.log("Second");
+
+async function readFile() {
+    try {
+        const data = await fs.readFile("file.txt", "utf-8")
+        console.log(data);
     }
-    else {
-        console.log("File written");
+    catch (error) {
+        console.log("Sorry", error)
     };
-}); 
+};
+readFile();
+
+async function writeFile() {
+    try {
+        const data = await fs.writeFile(
+            "./async-awaite.txt", 
+            "This is async awaite",
+            )
+        const data1 = await fs.writeFile(
+            "./file.txt", 
+            "Good Day Olumide",
+            )
+        const data2 = await fs.readFile("async-awaite.txt", "utf-8");
+        console.log(data2);
+    }
+    catch (error) {
+        console.log(error);
+    };
+};
+writeFile();
