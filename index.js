@@ -251,8 +251,8 @@
 // }); 
 
 
-const { error } = require("node:console");
-const fs = require("node:fs/promises");
+// const { error } = require("node:console");
+// const fs = require("node:fs/promises");
 
 // console.log("First");
 
@@ -262,32 +262,48 @@ const fs = require("node:fs/promises");
 
 // console.log("Second");
 
-async function readFile() {
-    try {
-        const data = await fs.readFile("file.txt", "utf-8")
-        console.log(data);
-    }
-    catch (error) {
-        console.log("Sorry", error)
-    };
-};
-readFile();
+// async function readFile() {
+//     try {
+//         const data = await fs.readFile("file.txt", "utf-8")
+//         console.log(data);
+//     }
+//     catch (error) {
+//         console.log("Sorry", error)
+//     };
+// };
+// readFile();
 
-async function writeFile() {
-    try {
-        const data = await fs.writeFile(
-            "./async-awaite.txt", 
-            "This is async awaite",
-            )
-        const data1 = await fs.writeFile(
-            "./file.txt", 
-            "Good Day Olumide",
-            )
-        const data2 = await fs.readFile("async-awaite.txt", "utf-8");
-        console.log(data2);
-    }
-    catch (error) {
-        console.log(error);
-    };
-};
-writeFile();
+// async function writeFile() {
+//     try {
+//         const data = await fs.writeFile(
+//             "./async-awaite.txt", 
+//             "This is async awaite",
+//             )
+//         const data1 = await fs.writeFile(
+//             "./file.txt", 
+//             "Good Day Olumide",
+//             )
+//         const data2 = await fs.readFile("async-awaite.txt", "utf-8");
+//         console.log(data2);
+//     }
+//     catch (error) {
+//         console.log(error);
+//     };
+// };
+// writeFile();
+
+// Stream fs module method
+// const fs = require("node:fs");
+
+// const readableStream = fs.createReadStream("./file1.txt", {
+//     encoding: "utf-8",
+//     highWaterMark: 5,
+// });
+
+// const writeableStream = fs.createWriteStream("./file2.txt");
+
+// // Adding Event Emitter
+// readableStream.on("data", (chunk) => {
+//     console.log(chunk.trim());
+//     writeableStream.write(chunk);
+// });
