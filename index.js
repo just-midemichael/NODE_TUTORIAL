@@ -198,12 +198,54 @@
 // Streams and Buffer
 // Creating a new instance
 // Default encoding value is  utf-8 (character Encoding value in 8bits)
-const buffer = new Buffer.from("Olu",);
+// const buffer = new Buffer.from("Olu",);
 
 // Because buffer as limited memory.. "AMARA" overwrites "Olu";
-// last two letters "RA" were ignored also
+// last two letters "RA" were ignored from "AMARA" also
 // This is because "olu" is a 3 letter character word, thus
 // Only 3 character space are reserved 
-buffer.write("AMARA");
-console.log(buffer.toString().toUpperCase());
-console.log(buffer.toJSON());
+// buffer.write("AMARA");
+// console.log(buffer.toString().toUpperCase());
+// console.log(buffer.toJSON());
+
+
+
+// Lesson 10
+// FS module
+// Fs module use internal buffer
+const fs = require("node:fs");
+
+console.log("First");
+
+// Added second argument UTF-8
+const fileContents = fs.readFileSync("./file.txt", "utf-8");
+console.log(fileContents);
+
+
+console.log("Second");
+
+// Reading file asynchronously
+fs.readFile("./file.txt", "utf-8", (error, data) => {
+if(error) {
+    console.log(error);
+}
+else {
+    console.log(data);    
+};
+});
+
+console.log("Third");
+
+
+fs.writeFileSync("./greet.txt", "Hello-World!");
+
+
+// This overrides the synchronous fs.writeFileSync
+fs.writeFile("./greet.txt", " Hello Africa!", {flag: "a"}, (error) => {
+    if(error) {
+        console.log(error);
+    }
+    else {
+        console.log("File written");
+    };
+}); 
