@@ -321,15 +321,32 @@
 // http web server
 const { error } = require("node:console");
 const http = require("node:http");
+const fs = require("node:fs/promises");
+const data = require("./data.json");
+const { isUtf8 } = require("node:buffer");
 const port = 3000;
 
 // Creating the server
 const server = http.createServer((request, response) => {
 
-    const footBallers = {
-        firstName: "Christiano",
-        lastName: "Ronaldo",
-    }
+    // Array Object of footballers
+    const footBallers = [
+        {
+            id: 1,
+            firstName: "Christiano",
+            lastName: "Ronaldo",
+        },
+        {
+            id: 2,
+            firstName: "Christiano",
+            lastName: "Ronaldo",
+        },
+        {
+            id: 3,
+            firstName: "Christiano",
+            lastName: "Ronaldo",
+        },
+    ]
 
     response.writeHead(200, {"Content-Type": "application/json"});
     response.end(JSON.stringify(footBallers));
@@ -344,3 +361,22 @@ server.listen(port, (error) => {
         console.log(`Server is running on port: ${port}`)
     }
 });
+
+// Creating a json file with fs async module method
+async function createJson() {
+    try {
+        const write = await fs.writeFile(
+            "./data1.json",
+            JSON.stringify(data),
+            "utf-8",
+        )
+        const readJsonFile = await fs.readFile("data1.json", {
+            encoding: "utf-8",
+        });
+        console.log(readJsonFile);
+    }
+    catch(error) {
+        console.log(error)
+    }
+};
+createJson();
