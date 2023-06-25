@@ -376,30 +376,30 @@ const port = 3000;
 
 
 // HTTP ROUTING
-const server = http.createServer((req, res) => {
+// const server = http.createServer((req, res) => {
     // req.method GET POST PUT DELETE
-    
-    if(req.url === "/") {
-        res.writeHead(200, {"Content-Type": "text/html"});
-        res.end("Home page");
-    }
-    else if (req.url === "/about") {
-        res.writeHead(200, {"Content-Type": "text/html"});
-        res.end("About Me");
-    }
-    else if (req.url === "/api") {
-        res.writeHead(200, {"Content-Type": "application/json"});
-        res.end(JSON.stringify(data));
-    }
-    else {
-        res.writeHead(404, {"Content-Type": "text/html"});
-        res.end("<h1>Page not Found</h1>");
-    };
-})
 
-server.listen(port, () => {
-    console.log("Server is running on port:", port)
-})
+//     if(req.url === "/") {
+//         res.writeHead(200, {"Content-Type": "text/html"});
+//         res.end("Home page");
+//     }
+//     else if (req.url === "/about") {
+//         res.writeHead(200, {"Content-Type": "text/html"});
+//         res.end("About Me");
+//     }
+//     else if (req.url === "/api") {
+//         res.writeHead(200, {"Content-Type": "application/json"});
+//         res.end(JSON.stringify(data));
+//     }
+//     else {
+//         res.writeHead(404, {"Content-Type": "text/html"});
+//         res.end("<h1>Page not Found</h1>");
+//     };
+// })
+
+// server.listen(port, () => {
+//     console.log("Server is running on port:", port)
+// })
 
 
 // Creating a json file with fs async module method
@@ -420,3 +420,4 @@ server.listen(port, () => {
 //     }
 // };
 // createJson();
+
