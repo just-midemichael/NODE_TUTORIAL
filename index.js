@@ -353,13 +353,15 @@ const server = http.createServer((request, response) => {
     // response.writeHead(200, {"Content-Type": "application/json"});
     // response.end(JSON.stringify(footBallers));
 
+    const name = "olu";
     // Content type of text/html
-    // const html = fs.readFileSync("./index.html", "utf-8")
     response.writeHead(200, {"Content-Type": "text/html"})
 
     // Creating a stream and piping it to response
-    fs.createReadStream( __dirname = "./index.html").pipe(response);
-    // response.end(html);
+    // fs.createReadStream( __dirname = "./index.html").pipe(response);
+    let html = fs.readFileSync("./index.html", "utf-8");
+    html = html.replace("{{name}}", name)
+    response.end(html);
 });
 
 // listening to port with call back for async
