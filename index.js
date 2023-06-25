@@ -319,13 +319,13 @@
 
 // Lesson 11
 // http web server
-const { error } = require("node:console");
-const http = require("node:http");
+// const { error } = require("node:console");
+// const http = require("node:http");
 // const fs = require("node:fs/promises");
-const fs = require("node:fs");
-const data = require("./data.json");
+// const fs = require("node:fs");
+// const data = require("./data.json");
 
-const port = 3000;
+// const port = 3000;
 
 // Creating the server
 // const server = http.createServer((request, response) => {
@@ -421,3 +421,30 @@ const port = 3000;
 // };
 // createJson();
 
+
+
+// Lesson 12
+// libuv
+const fs = require("node:fs");
+const crypto = require("node:crypto");
+
+// console.log(1);
+
+// fs.readFile("./file.txt", "utf-8", () => {
+//     console.log("File Contents")
+// })
+
+// console.log(2);
+
+// Password Base Key derivation Function 2 (pbkdf2)
+const start = Date.now();
+crypto.pbkdf2Sync("password", "salt", 10000, 512, "sha512");
+console.log("Hash: ", Date.now() - start);
+
+const MAX_CALLS = 3;
+const start1 = Date.now();
+for (let i = 0; i < MAX_CALLS; i++) {
+    crypto.pbkdf2("password", "salt", 10000, 512, "sha512", () => {
+        console.log(`Hash: ${i - 1}`, Date.now() - start1);
+    });
+};
