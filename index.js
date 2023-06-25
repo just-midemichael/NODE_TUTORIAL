@@ -293,19 +293,19 @@
 // writeFile();
 
 // Stream fs module method
-const fs = require("node:fs");
-const zlib = require("node:zlib");
+// const fs = require("node:fs");
+// const zlib = require("node:zlib");
 
-const gzib = zlib.createGzip();
+// const gzib = zlib.createGzip();
 
-const readableStream = fs.createReadStream("./file1.txt", {
-    encoding: "utf-8",
-    highWaterMark: 5,
-});
+// const readableStream = fs.createReadStream("./file1.txt", {
+//     encoding: "utf-8",
+//     highWaterMark: 5,
+// });
 
-readableStream.pipe(gzib).pipe(fs.WriteStream("./file2.txt.gz"))
+// readableStream.pipe(gzib).pipe(fs.WriteStream("./file2.txt.gz"))
 
-const writeableStream = fs.createWriteStream("./file2.txt");
+// const writeableStream = fs.createWriteStream("./file2.txt");
 
 // Adding Event listener
 // readableStream.on("data", (chunk) => {
@@ -314,4 +314,27 @@ const writeableStream = fs.createWriteStream("./file2.txt");
 // });
 
 // using pipes
-readableStream.pipe(writeableStream);
+// readableStream.pipe(writeableStream);
+
+
+// Lesson 11
+// http web server
+const { error } = require("node:console");
+const http = require("node:http");
+const port = 3000;
+
+// Creating the server
+const server = http.createServer((request, response) => {
+    response.writeHead(200, {"Content-Type": "text/plain"});
+    response.end("Thank you for visiting");
+});
+
+// listening to port with call back for async
+server.listen(port, (error) => {
+    if(error) {
+        console.log("Runtime Error", error);
+    }
+    else {
+        console.log(`Server is running on port: ${port}`)
+    }
+});
