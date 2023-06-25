@@ -328,7 +328,7 @@ const data = require("./data.json");
 const port = 3000;
 
 // Creating the server
-const server = http.createServer((request, response) => {
+// const server = http.createServer((request, response) => {
 
     // Array Object of footballers
     // const footBallers = [
@@ -353,26 +353,54 @@ const server = http.createServer((request, response) => {
     // response.writeHead(200, {"Content-Type": "application/json"});
     // response.end(JSON.stringify(footBallers));
 
-    const name = "olu";
+    // const name = "olu";
     // Content type of text/html
-    response.writeHead(200, {"Content-Type": "text/html"})
+    // response.writeHead(200, {"Content-Type": "text/html"})
 
     // Creating a stream and piping it to response
     // fs.createReadStream( __dirname = "./index.html").pipe(response);
-    let html = fs.readFileSync("./index.html", "utf-8");
-    html = html.replace("{{name}}", name)
-    response.end(html);
-});
+//     let html = fs.readFileSync("./index.html", "utf-8");
+//     html = html.replace("{{name}}", name)
+//     response.end(html);
+// });
 
 // listening to port with call back for async
-server.listen(port, (error) => {
-    if(error) {
-        console.log("Runtime Error", error);
+// server.listen(port, (error) => {
+//     if(error) {
+//         console.log("Runtime Error", error);
+//     }
+//     else {
+//         console.log(`Server is running on port: ${port}`)
+//     }
+// });
+
+
+// HTTP ROUTING
+const server = http.createServer((req, res) => {
+    // req.method GET POST PUT DELETE
+    
+    if(req.url === "/") {
+        res.writeHead(200, {"Content-Type": "text/html"});
+        res.end("Home page");
+    }
+    else if (req.url === "/about") {
+        res.writeHead(200, {"Content-Type": "text/html"});
+        res.end("About Me");
+    }
+    else if (req.url === "/api") {
+        res.writeHead(200, {"Content-Type": "application/json"});
+        res.end(JSON.stringify(data));
     }
     else {
-        console.log(`Server is running on port: ${port}`)
-    }
-});
+        res.writeHead(404, {"Content-Type": "text/html"});
+        res.end("<h1>Page not Found</h1>");
+    };
+})
+
+server.listen(port, () => {
+    console.log("Server is running on port:", port)
+})
+
 
 // Creating a json file with fs async module method
 // async function createJson() {
