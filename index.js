@@ -425,8 +425,8 @@
 
 // Lesson 12
 // libuv
-const fs = require("node:fs");
-const crypto = require("node:crypto");
+// const fs = require("node:fs");
+// const crypto = require("node:crypto");
 
 // console.log(1);
 
@@ -437,14 +437,16 @@ const crypto = require("node:crypto");
 // console.log(2);
 
 // Password Base Key derivation Function 2 (pbkdf2)
-const start = Date.now();
-crypto.pbkdf2Sync("password", "salt", 10000, 512, "sha512");
-console.log("Hash: ", Date.now() - start);
+// const start = Date.now();
+// crypto.pbkdf2Sync("password", "salt", 10000, 512, "sha512");
+// console.log("Hash: ", Date.now() - start);
 
-const MAX_CALLS = 3;
-const start1 = Date.now();
-for (let i = 0; i < MAX_CALLS; i++) {
-    crypto.pbkdf2("password", "salt", 10000, 512, "sha512", () => {
-        console.log(`Hash: ${i - 1}`, Date.now() - start1);
-    });
-};
+// Asynchronous
+// process.env.UV_THREADPOOL_SIZE = 6;
+// const MAX_CALLS = 6;
+// const start = Date.now();
+// for (let i = 0; i < MAX_CALLS; i++) {
+//     crypto.pbkdf2("password", "salt", 10000, 512, "sha512", () => {
+//         console.log(`Hash: ${i - 1}`, Date.now() - start);
+//     });
+// };
