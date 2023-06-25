@@ -325,8 +325,14 @@ const port = 3000;
 
 // Creating the server
 const server = http.createServer((request, response) => {
-    response.writeHead(200, {"Content-Type": "text/plain"});
-    response.end("Thank you for visiting");
+
+    const footBallers = {
+        firstName: "Christiano",
+        lastName: "Ronaldo",
+    }
+
+    response.writeHead(200, {"Content-Type": "application/json"});
+    response.end(JSON.stringify(footBallers));
 });
 
 // listening to port with call back for async
