@@ -454,19 +454,52 @@
 
 // lesson 12
 // Network i/o
-const https = require("node:https");
+// const https = require("node:https");
 
-const MAX_CALLS = 20;
+// const MAX_CALLS = 20;
 
-const start = Date.now();
+// const start = Date.now();
 
-for(let i = 0; i < MAX_CALLS; i++ ) {
-    https
-        .request("https://www.google.com", (res) => {
-            res.on("data", () => {});
-            res.on("end", () => {
-                console.log(`Request: ${i - 1}`, Date.now() - start);
-            });
-        })
-        .end();
-};
+// for(let i = 0; i < MAX_CALLS; i++ ) {
+//     https
+//         .request("https://www.google.com", (res) => {
+//             res.on("data", () => {});
+//             res.on("end", () => {
+//                 console.log(`Request: ${i - 1}`, Date.now() - start);
+//             });
+//         })
+//         .end();
+// };
+
+// Lesson 12
+// Micro-Task Queue
+
+// Experiment 1
+// console.log(1);
+// process.nextTick(() => {
+//     console.log("This is process.next Tick 1")
+// });
+// console.log(2);
+
+// Experiment 2.0
+// Promise.resolve().then(() => {
+//     console.log("This is promise.resolve 1")
+// });
+// process.nextTick((error) => {
+//     console.log("This is process.nextTick 1")
+// })
+
+// Experiment 2.1
+process.nextTick(() => console.log("this is process.next Tick 1"));
+process.nextTick(() => {
+    console.log("This is process.nextTick 2")
+    process.nextTick(() => console.log("This is the inner tick inside next tick"));
+});
+process.nextTick(() => console.log("This is process.next Tick 3"));
+
+Promise.resolve().then(() => console.log("This is promise.resolve 1"))
+Promise.resolve().then(() => {
+    console.log("This is promise.resolve 2");
+    process.nextTick(() => console.log("This is inner next tick inside Promise then block"));
+});
+Promise.resolve().then(() => console.log("This is promise.resolve 3"));
