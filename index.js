@@ -490,6 +490,13 @@
 // })
 
 // Experiment 2.1
+setTimeout(() => console.log("This is a setTimeout 1"), 0);
+setTimeout(() => {
+    console.log("This is a setTimeout 2");
+    process.nextTick(() => {console.log("This is the inner next Tick inside setTimeout")})
+}, 0);
+setTimeout(() => console.log("This is a setTimeout 3"), 0);
+
 process.nextTick(() => console.log("this is process.next Tick 1"));
 process.nextTick(() => {
     console.log("This is process.nextTick 2")
@@ -503,3 +510,8 @@ Promise.resolve().then(() => {
     process.nextTick(() => console.log("This is inner next tick inside Promise then block"));
 });
 Promise.resolve().then(() => console.log("This is promise.resolve 3"));
+
+// Experiment 3 
+
+
+
