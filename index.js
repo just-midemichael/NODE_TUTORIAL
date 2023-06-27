@@ -516,7 +516,7 @@
 
 // i/o queue
 // Experiment 6, 7, 8, 9, 10, 11,
-const fs = require("node:fs");
+// const fs = require("node:fs");
 
 // fs.readFile(__filename, () => {
 //     console.log("This is readFile 1");
@@ -547,5 +547,21 @@ const fs = require("node:fs");
 // setImmediate(() => console.log("This is setImmediate 3"));
 
 // Experiment 13
-setTimeout(() => console.log("This is setTimout 1"), 0)
-setTimeout(() => console.log("This is setImmediate 1"));
+// setTimeout(() => console.log("This is setTimout 1"), 0)
+// setTimeout(() => console.log("This is setImmediate 1"));
+
+// Experiment 14
+// Close queue
+const fs = require("node:fs");
+
+const readableStream = fs.createReadStream(__filename);
+readableStream.close();
+
+readableStream.on("close", () => {
+    console.log("This is from readbaleStream close event callback");
+});
+setImmediate(() => console.log("This is setImmediate 1"));
+setTimeout(() => console.log("This is setTimeout 1"), 0);
+Promise.resolve().then(() => console.log("This is Promise.resolve 1"));
+process.nextTick(() => console.log("This is process.nextTick 1"));
+
