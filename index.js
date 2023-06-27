@@ -490,28 +490,53 @@
 // })
 
 // Experiment 2.1
-setTimeout(() => console.log("This is a setTimeout 1"), 0);
-setTimeout(() => {
-    console.log("This is a setTimeout 2");
-    process.nextTick(() => {console.log("This is the inner next Tick inside setTimeout")})
-}, 0);
-setTimeout(() => console.log("This is a setTimeout 3"), 0);
-
-process.nextTick(() => console.log("this is process.next Tick 1"));
-process.nextTick(() => {
-    console.log("This is process.nextTick 2")
-    process.nextTick(() => console.log("This is the inner tick inside next tick"));
-});
-process.nextTick(() => console.log("This is process.next Tick 3"));
-
-Promise.resolve().then(() => console.log("This is promise.resolve 1"))
-Promise.resolve().then(() => {
-    console.log("This is promise.resolve 2");
-    process.nextTick(() => console.log("This is inner next tick inside Promise then block"));
-});
-Promise.resolve().then(() => console.log("This is promise.resolve 3"));
-
 // Experiment 3 
+// Timer queue
+
+// setTimeout(() => console.log("This is a setTimeout 1"), 0);
+// setTimeout(() => {
+//     console.log("This is a setTimeout 2");
+//     process.nextTick(() => {console.log("This is the inner next Tick inside setTimeout")})
+// }, 0);
+// setTimeout(() => console.log("This is a setTimeout 3"), 0);
+
+// process.nextTick(() => console.log("this is process.next Tick 1"));
+// process.nextTick(() => {
+//     console.log("This is process.nextTick 2")
+//     process.nextTick(() => console.log("This is the inner tick inside next tick"));
+// });
+// process.nextTick(() => console.log("This is process.next Tick 3"));
+
+// Promise.resolve().then(() => console.log("This is promise.resolve 1"))
+// Promise.resolve().then(() => {
+//     console.log("This is promise.resolve 2");
+//     process.nextTick(() => console.log("This is inner next tick inside Promise then block"));
+// });
+// Promise.resolve().then(() => console.log("This is promise.resolve 3"));
+
+// i/o queue
+// Experiment 6, 7
+const fs = require("node:fs");
+
+fs.readFile(__filename, () => {
+    console.log("This is readFile");
+});
+
+process.nextTick(() => console.log("This is process .nextTick 1"));
+Promise.resolve().then(() =>  console.log("This is Promise.resolve 1"));
+
+setTimeout(() => {
+   console.log("This is setTimeout 1"); 
+}, 0);
+
+
+// i/o polling
+setImmediate(() => {
+    console.log("This is set immediate 1");
+});
+
+for(let i = 0; i < 200000000; i++) {};
+
 
 
 
