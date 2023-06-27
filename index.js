@@ -552,16 +552,20 @@
 
 // Experiment 14
 // Close queue
-const fs = require("node:fs");
+// const fs = require("node:fs");
 
-const readableStream = fs.createReadStream(__filename);
-readableStream.close();
+// const readableStream = fs.createReadStream(__filename);
+// readableStream.close();
 
-readableStream.on("close", () => {
-    console.log("This is from readbaleStream close event callback");
-});
-setImmediate(() => console.log("This is setImmediate 1"));
-setTimeout(() => console.log("This is setTimeout 1"), 0);
-Promise.resolve().then(() => console.log("This is Promise.resolve 1"));
-process.nextTick(() => console.log("This is process.nextTick 1"));
+// readableStream.on("close", (res) => {
+//     console.log("This is from readbaleStream close event callback");
+// });
+// setImmediate(() => console.log("This is setImmediate 1"));
+// setTimeout(() => console.log("This is setTimeout 1"), 0);
+// Promise.resolve().then(() => console.log("This is Promise.resolve 1"));
+// process.nextTick(() => console.log("This is process.nextTick 1"));
+
+
+
+
 
