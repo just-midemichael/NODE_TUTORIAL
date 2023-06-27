@@ -515,28 +515,37 @@
 // Promise.resolve().then(() => console.log("This is promise.resolve 3"));
 
 // i/o queue
-// Experiment 6, 7
+// Experiment 6, 7, 8, 9, 10, 11,
 const fs = require("node:fs");
 
-fs.readFile(__filename, () => {
-    console.log("This is readFile");
-});
+// fs.readFile(__filename, () => {
+//     console.log("This is readFile 1");
+//     setImmediate(() => {
+//         console.log("This is inner setImmediate 1");
+//     });
+//     process.nextTick(() => console.log("process.nextTick inside readFile"));
+//     Promise.resolve().then(() => console.log("Promise.resolve inside readFile"))
+// });
 
-process.nextTick(() => console.log("This is process .nextTick 1"));
-Promise.resolve().then(() =>  console.log("This is Promise.resolve 1"));
+// process.nextTick(() => console.log("This is process .nextTick 1"));
+// Promise.resolve().then(() =>  console.log("This is Promise.resolve 1"));
 
-setTimeout(() => {
-   console.log("This is setTimeout 1"); 
-}, 0);
+// setTimeout(() => {
+//    console.log("This is setTimeout 1"); 
+// }, 0);
 
+// for(let i = 0; i < 200000000; i++) {};
 
-// i/o polling
-setImmediate(() => {
-    console.log("This is set immediate 1");
-});
+// Experiment 12
+// Check queue
+// setImmediate(() => console.log("This is setImmediate 1"));
+// setImmediate(() => {
+//     console.log("This is setImmediate 2");
+//     process.nextTick(() => console.log("This is process.nextTick 1"));
+//     Promise.resolve().then(() => console.log("This is Promise.resolve 1"));
+// });
+// setImmediate(() => console.log("This is setImmediate 3"));
 
-for(let i = 0; i < 200000000; i++) {};
-
-
-
-
+// Experiment 13
+setTimeout(() => console.log("This is setTimout 1"), 0)
+setTimeout(() => console.log("This is setImmediate 1"));
