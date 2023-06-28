@@ -9,9 +9,12 @@
   },
   "bin": {
     "olumide-pokedex": "index.js"
-  }
-  ,
+  },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "upper-case": "^2.0.2",
+    "yargs": "^17.7.2"
+  }
 }
