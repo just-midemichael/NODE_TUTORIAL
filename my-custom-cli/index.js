@@ -1,9 +1,8 @@
 #!/usr/bin/env node
+// const yargs = require("yargs");
+// const {argv} = yargs(process.argv);
 
-const yargs = require("yargs");
-const {argv} = yargs(process.argv);
-
-// console.log("olumide pokedex");
+const inquirer = require("inquirer");
 
 const arrayStart = 0;
 const arrayEnd = 5;
@@ -15,4 +14,13 @@ const printFiveMoves = async (pokemonName) => {
     console.log(moves.slice(arrayStart, arrayEnd))
 };
 
-printFiveMoves(argv.pokemon);
+const prompt = inquirer.createPromptModule();
+prompt([{
+    type: "input",
+    name: "pokemon",
+    message: "Enter a pokemon name to view its first 5 moves"    
+}]).then((answers) => {
+    const pokemon = answers.pokemon;
+    printFiveMoves(pokemon);
+});
+
