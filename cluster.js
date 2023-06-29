@@ -12,7 +12,7 @@ if(cluster.isMaster) {
 else {
     console.log(`Worker ${process.pid} started`);
     
-    const server = http.createServer((res, req) => {
+    const server = http.createServer((req, res) => {
         
         if(req.url === ("/")) {
             res.writeHead(200, {"Content-Type": "text/plain"});

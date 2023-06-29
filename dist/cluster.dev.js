@@ -15,7 +15,7 @@ if (cluster.isMaster) {
   cluster.fork(); // Second Worker
 } else {
   console.log("Worker ".concat(process.pid, " started"));
-  var server = http.createServer(function (res, req) {
+  var server = http.createServer(function (req, res) {
     if (req.url === "/") {
       res.writeHead(200, {
         "Content-Type": "text/plain"

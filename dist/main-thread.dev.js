@@ -6,7 +6,7 @@ var _require = require("node:worker_threads"),
     Worker = _require.Worker;
 
 var port = 4000;
-var server = http.createServer(function (res, req) {
+var server = http.createServer(function (req, res) {
   if (req.url === "/") {
     res.writeHead(200, {
       "Content-Type": "text/plain"

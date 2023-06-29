@@ -2,7 +2,7 @@ const http = require("node:http");
 
 const port = 8000;
 const printMessage = `Server is running on port ${port}` 
-const server = http.createServer((res, req) => {
+const server = http.createServer((req, res) => {
     if(req.url === ("/")) {
         res.writeHead(200, {"Content-Type": "text/plain"});
         res.end("Home Page");

@@ -3,7 +3,7 @@ const { Worker } = require("node:worker_threads");
 
 const port = 4000;
 
-const server = http.createServer((res, req) => {
+const server = http.createServer((req, res) => {
     if(req.url === ("/")) {
         res.writeHead(200, {"Content-Type": "text/plain"});
         res.end("Home Page");

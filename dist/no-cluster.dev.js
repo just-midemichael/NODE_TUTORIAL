@@ -4,7 +4,7 @@ var http = require("node:http");
 
 var port = 8000;
 var printMessage = "Server is running on port ".concat(port);
-var server = http.createServer(function (res, req) {
+var server = http.createServer(function (req, res) {
   if (req.url === "/") {
     res.writeHead(200, {
       "Content-Type": "text/plain"
